@@ -703,7 +703,7 @@ namespace ARC_V4
         public static string NamelistPath = $"{RunPath}\\config\\namelist\\namelist.ini";//名单路径
         public static bool MoState = false;//手动点名状态
         public static bool AutoState = false;//自动点名状态
-        public static string[] Namelists = Directory.GetFiles($"{RunPath}\\config\\namelist");
+        public static string[] Namelists;//名单列表
         //声明对象======================================================================================
         Random random = new Random();//随机数
         //事件========================================================================================
@@ -729,6 +729,7 @@ namespace ARC_V4
                 WriteConfig(ConfigPath, "config", "WelcomeText", "欢迎使用自动点名器V4");
                 WriteConfig(ConfigPath, "config", "Time", "50");
                 WriteConfig(ConfigPath, "config", "AutoTime", "1000");
+                WriteConfig(ConfigPath, "config", "NamelistsFile", "0");
             }
             if (!File.Exists(NamelistPath))
             {
@@ -746,7 +747,7 @@ namespace ARC_V4
                 WriteConfig(NamelistPath, "names", "11", "Hello world");
                 WriteConfig(NamelistPath, "names", "12", "这只是一个示例名单，自定义请到设置界面设置");
             }
-            
+            Namelists = Directory.GetFiles($"{RunPath}\\config\\namelist");
 
             //读取配置
             try
@@ -793,12 +794,14 @@ namespace ARC_V4
                 select_Settings_NamelistsFile.Items.Add(Namelists[i]);
             }
             select_Settings_NamelistsFile.SelectedIndex = int.Parse(ReadConfig(ConfigPath, "config", "NamelistsFile"));
+            NamelistPath = select_Settings_NamelistsFile.Text;
 
             //提示框
             tooltipComponent.SetTip(inputNumber_Settings_Time, "每次切换的间隔，单位毫秒。最小为1毫秒");
             tooltipComponent.SetTip(inputNumber_Settings_AutoTime, "自动抽取多久后暂停，单位毫秒。最小为1000毫秒");
 
-            
+            //关于
+            label_AboutInfo3.Text = $"当前分支:{Fork}  当前版本: {Version}";
         }
 
         private void button_MoStart_Click(object sender, EventArgs e)
@@ -882,6 +885,23 @@ namespace ARC_V4
         private void inputNumber_Settings_AutoTime_ValueChanged(object sender, AntdUI.DecimalEventArgs e)
         {
             WriteConfig(ConfigPath, "config", "AutoTime", $"{inputNumber_Settings_AutoTime.Value}");
+        }
+
+        private void select_Settings_NamelistsFile_SelectedIndexChanged(object sender, AntdUI.IntEventArgs e)
+        {
+            WriteConfig(ConfigPath, "config", "NamelistsFile", $"{select_Settings_NamelistsFile.SelectedIndex}");
+            NamelistPath = select_Settings_NamelistsFile.Text;
+
+            AntdUI.Message.open(new AntdUI.Message.Config(this, "", AntdUI.TType.Success)
+            {
+                Text = $"成功将名单文件切换至 {select_Settings_NamelistsFile.Text}",
+                Icon = AntdUI.TType.Success
+            });
+        }
+
+        private void button_NamelistEditor_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("该功能正在开发中...");
         }
     }
 }

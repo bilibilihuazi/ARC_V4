@@ -37,11 +37,9 @@
             this.tabPage_Settings = new AntdUI.TabPage();
             this.tabPage_About = new AntdUI.TabPage();
             this.timer_Mo = new System.Windows.Forms.Timer(this.components);
-            this.button_MoStart = new AntdUI.Button();
             this.labe_MoDisplay = new AntdUI.Label();
             this.tabPage_AutoDraw = new AntdUI.TabPage();
             this.label_AutoDisplay = new AntdUI.Label();
-            this.button_AutoStart = new AntdUI.Button();
             this.timer_Auto = new System.Windows.Forms.Timer(this.components);
             this.label_Settings_Time = new AntdUI.Label();
             this.inputNumber_Settings_Time = new AntdUI.InputNumber();
@@ -50,9 +48,17 @@
             this.tooltipComponent = new AntdUI.TooltipComponent();
             this.button_NamelistEditor = new AntdUI.Button();
             this.select_Settings_NamelistsFile = new AntdUI.Select();
+            this.button_MoStart = new AntdUI.Button();
+            this.button_AutoStart = new AntdUI.Button();
+            this.image3D_About = new AntdUI.Image3D();
+            this.label_AboutInfo1 = new AntdUI.Label();
+            this.label_AboutInfo2 = new AntdUI.Label();
+            this.label_AboutInfo4 = new AntdUI.Label();
+            this.label_AboutInfo3 = new AntdUI.Label();
             this.tabs.SuspendLayout();
             this.tabPage_MoDraw.SuspendLayout();
             this.tabPage_Settings.SuspendLayout();
+            this.tabPage_About.SuspendLayout();
             this.tabPage_AutoDraw.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -83,7 +89,7 @@
             this.tabs.Pages.Add(this.tabPage_AutoDraw);
             this.tabs.Pages.Add(this.tabPage_Settings);
             this.tabs.Pages.Add(this.tabPage_About);
-            this.tabs.SelectedIndex = 2;
+            this.tabs.SelectedIndex = 3;
             this.tabs.Size = new System.Drawing.Size(550, 270);
             this.tabs.Style = styleLine1;
             this.tabs.TabIndex = 1;
@@ -107,17 +113,22 @@
             this.tabPage_Settings.Controls.Add(this.label_Settings_AutoTime);
             this.tabPage_Settings.Controls.Add(this.inputNumber_Settings_Time);
             this.tabPage_Settings.Controls.Add(this.label_Settings_Time);
-            this.tabPage_Settings.Location = new System.Drawing.Point(3, 29);
+            this.tabPage_Settings.Location = new System.Drawing.Point(0, 0);
             this.tabPage_Settings.Name = "tabPage_Settings";
-            this.tabPage_Settings.Size = new System.Drawing.Size(544, 238);
+            this.tabPage_Settings.Size = new System.Drawing.Size(0, 0);
             this.tabPage_Settings.TabIndex = 3;
             this.tabPage_Settings.Text = "设置";
             // 
             // tabPage_About
             // 
-            this.tabPage_About.Location = new System.Drawing.Point(0, 0);
+            this.tabPage_About.Controls.Add(this.label_AboutInfo3);
+            this.tabPage_About.Controls.Add(this.label_AboutInfo4);
+            this.tabPage_About.Controls.Add(this.label_AboutInfo2);
+            this.tabPage_About.Controls.Add(this.label_AboutInfo1);
+            this.tabPage_About.Controls.Add(this.image3D_About);
+            this.tabPage_About.Location = new System.Drawing.Point(3, 29);
             this.tabPage_About.Name = "tabPage_About";
-            this.tabPage_About.Size = new System.Drawing.Size(0, 0);
+            this.tabPage_About.Size = new System.Drawing.Size(544, 238);
             this.tabPage_About.TabIndex = 4;
             this.tabPage_About.Text = "关于";
             // 
@@ -125,19 +136,6 @@
             // 
             this.timer_Mo.Enabled = true;
             this.timer_Mo.Tick += new System.EventHandler(this.timer_Mo_Tick);
-            // 
-            // button_MoStart
-            // 
-            this.button_MoStart.HandCursor = System.Windows.Forms.Cursors.Default;
-            this.button_MoStart.Icon = global::ARC_V4.Properties.Resources.Start;
-            this.button_MoStart.IconRatio = 1F;
-            this.button_MoStart.Location = new System.Drawing.Point(350, 165);
-            this.button_MoStart.Name = "button_MoStart";
-            this.button_MoStart.Size = new System.Drawing.Size(185, 70);
-            this.button_MoStart.TabIndex = 1;
-            this.button_MoStart.Text = "开始抽取";
-            this.button_MoStart.Type = AntdUI.TTypeMini.Primary;
-            this.button_MoStart.Click += new System.EventHandler(this.button_MoStart_Click);
             // 
             // labe_MoDisplay
             // 
@@ -171,19 +169,6 @@
             this.label_AutoDisplay.TabIndex = 2;
             this.label_AutoDisplay.Text = "UNKNOWN";
             this.label_AutoDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // button_AutoStart
-            // 
-            this.button_AutoStart.HandCursor = System.Windows.Forms.Cursors.Default;
-            this.button_AutoStart.Icon = global::ARC_V4.Properties.Resources.Start;
-            this.button_AutoStart.IconRatio = 1F;
-            this.button_AutoStart.Location = new System.Drawing.Point(350, 165);
-            this.button_AutoStart.Name = "button_AutoStart";
-            this.button_AutoStart.Size = new System.Drawing.Size(185, 70);
-            this.button_AutoStart.TabIndex = 3;
-            this.button_AutoStart.Text = "开始抽取";
-            this.button_AutoStart.Type = AntdUI.TTypeMini.Primary;
-            this.button_AutoStart.Click += new System.EventHandler(this.button_AutoStart_Click);
             // 
             // timer_Auto
             // 
@@ -253,6 +238,7 @@
             this.button_NamelistEditor.Size = new System.Drawing.Size(126, 37);
             this.button_NamelistEditor.TabIndex = 4;
             this.button_NamelistEditor.Text = "名单编辑器";
+            this.button_NamelistEditor.Click += new System.EventHandler(this.button_NamelistEditor_Click);
             // 
             // select_Settings_NamelistsFile
             // 
@@ -265,6 +251,82 @@
             this.select_Settings_NamelistsFile.Placement = AntdUI.TAlignFrom.Top;
             this.select_Settings_NamelistsFile.Size = new System.Drawing.Size(523, 45);
             this.select_Settings_NamelistsFile.TabIndex = 5;
+            this.select_Settings_NamelistsFile.SelectedIndexChanged += new AntdUI.IntEventHandler(this.select_Settings_NamelistsFile_SelectedIndexChanged);
+            // 
+            // button_MoStart
+            // 
+            this.button_MoStart.HandCursor = System.Windows.Forms.Cursors.Default;
+            this.button_MoStart.Icon = global::ARC_V4.Properties.Resources.Start;
+            this.button_MoStart.IconRatio = 1F;
+            this.button_MoStart.Location = new System.Drawing.Point(350, 165);
+            this.button_MoStart.Name = "button_MoStart";
+            this.button_MoStart.Size = new System.Drawing.Size(185, 70);
+            this.button_MoStart.TabIndex = 1;
+            this.button_MoStart.Text = "开始抽取";
+            this.button_MoStart.Type = AntdUI.TTypeMini.Primary;
+            this.button_MoStart.Click += new System.EventHandler(this.button_MoStart_Click);
+            // 
+            // button_AutoStart
+            // 
+            this.button_AutoStart.HandCursor = System.Windows.Forms.Cursors.Default;
+            this.button_AutoStart.Icon = global::ARC_V4.Properties.Resources.Start;
+            this.button_AutoStart.IconRatio = 1F;
+            this.button_AutoStart.Location = new System.Drawing.Point(350, 165);
+            this.button_AutoStart.Name = "button_AutoStart";
+            this.button_AutoStart.Size = new System.Drawing.Size(185, 70);
+            this.button_AutoStart.TabIndex = 3;
+            this.button_AutoStart.Text = "开始抽取";
+            this.button_AutoStart.Type = AntdUI.TTypeMini.Primary;
+            this.button_AutoStart.Click += new System.EventHandler(this.button_AutoStart_Click);
+            // 
+            // image3D_About
+            // 
+            this.image3D_About.Image = global::ARC_V4.Properties.Resources.Icon;
+            this.image3D_About.ImageFit = AntdUI.TFit.Fill;
+            this.image3D_About.Location = new System.Drawing.Point(9, 10);
+            this.image3D_About.Name = "image3D_About";
+            this.image3D_About.Size = new System.Drawing.Size(64, 64);
+            this.image3D_About.TabIndex = 0;
+            // 
+            // label_AboutInfo1
+            // 
+            this.label_AboutInfo1.Font = new System.Drawing.Font("微软雅黑", 15F);
+            this.label_AboutInfo1.HandCursor = System.Windows.Forms.Cursors.Default;
+            this.label_AboutInfo1.Location = new System.Drawing.Point(100, 10);
+            this.label_AboutInfo1.Name = "label_AboutInfo1";
+            this.label_AboutInfo1.Size = new System.Drawing.Size(163, 30);
+            this.label_AboutInfo1.TabIndex = 1;
+            this.label_AboutInfo1.Text = "自动点名器V4";
+            // 
+            // label_AboutInfo2
+            // 
+            this.label_AboutInfo2.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.label_AboutInfo2.HandCursor = System.Windows.Forms.Cursors.Default;
+            this.label_AboutInfo2.Location = new System.Drawing.Point(100, 46);
+            this.label_AboutInfo2.Name = "label_AboutInfo2";
+            this.label_AboutInfo2.Size = new System.Drawing.Size(265, 21);
+            this.label_AboutInfo2.TabIndex = 2;
+            this.label_AboutInfo2.Text = "华某人 版权所有 2024~2025 © 盗版必究";
+            // 
+            // label_AboutInfo4
+            // 
+            this.label_AboutInfo4.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.label_AboutInfo4.HandCursor = System.Windows.Forms.Cursors.Default;
+            this.label_AboutInfo4.Location = new System.Drawing.Point(9, 206);
+            this.label_AboutInfo4.Name = "label_AboutInfo4";
+            this.label_AboutInfo4.Size = new System.Drawing.Size(294, 21);
+            this.label_AboutInfo4.TabIndex = 3;
+            this.label_AboutInfo4.Text = "此软件使用.NET Framework框架，UI使用AntdUI库";
+            // 
+            // label_AboutInfo3
+            // 
+            this.label_AboutInfo3.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.label_AboutInfo3.HandCursor = System.Windows.Forms.Cursors.Default;
+            this.label_AboutInfo3.Location = new System.Drawing.Point(9, 179);
+            this.label_AboutInfo3.Name = "label_AboutInfo3";
+            this.label_AboutInfo3.Size = new System.Drawing.Size(520, 21);
+            this.label_AboutInfo3.TabIndex = 4;
+            this.label_AboutInfo3.Text = "当前分支: UNKNOWN  当前版本:UNKNOWN";
             // 
             // Main_Window
             // 
@@ -286,6 +348,7 @@
             this.tabs.ResumeLayout(false);
             this.tabPage_MoDraw.ResumeLayout(false);
             this.tabPage_Settings.ResumeLayout(false);
+            this.tabPage_About.ResumeLayout(false);
             this.tabPage_AutoDraw.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -312,6 +375,11 @@
         private AntdUI.TooltipComponent tooltipComponent;
         private AntdUI.Button button_NamelistEditor;
         private AntdUI.Select select_Settings_NamelistsFile;
+        private AntdUI.Image3D image3D_About;
+        private AntdUI.Label label_AboutInfo4;
+        private AntdUI.Label label_AboutInfo2;
+        private AntdUI.Label label_AboutInfo1;
+        private AntdUI.Label label_AboutInfo3;
     }
 }
 

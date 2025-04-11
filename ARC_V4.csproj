@@ -129,6 +129,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="assets\image\Icon.png" />
     <None Include="assets\image\Pause.png" />
     <None Include="assets\image\Start.png" />
     <Content Include="icon.ico" />
